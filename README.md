@@ -118,3 +118,19 @@ See `REPORT_AMIR.md` section 4 for explicit mapping to Vision 2030 (Education, D
 ## License
 
 MIT
+
+---
+
+### Housekeeping and Repo Hygiene
+
+- Build outputs live in `target/` and are already covered by `.gitignore`. If you want to clean locally:
+
+```bash
+mvn clean
+```
+
+- If you accidentally added build outputs, you can remove untracked generated files (use with care):
+
+```bash
+git clean -fdX  # deletes ignored files like target/, logs, etc.
+```
