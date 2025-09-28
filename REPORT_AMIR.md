@@ -5,6 +5,10 @@ Date: 2025-09-27
 
 ---
 
+## Introduction
+
+The Madrasati education platform is one of the most critical national digital systems in Saudi Arabia. It serves as the backbone for delivering online and blended education, supporting millions of students, teachers, and parents across the country. Since its launch, the platform has played a strategic role in ensuring educational continuity, especially during emergencies such as the COVID-19 pandemic.
+
 ## Phase 1 — Current State Analysis and Fault Identification (2–3 pages)
 
 - Context: Madrasati serves millions of daily active students and teachers across KSA. Critical periods include morning sign-ins, class streaming, exams, and nationwide announcements.
@@ -48,8 +52,31 @@ See `docs/diagrams.md` for C4 diagrams. Key patterns:
 ### Fault Trees
 
 - `docs/diagrams.md` includes Mermaid-based fault trees for:
-  - System Unavailability
+  - Platform Unavailable During Exam (FTA)
   - Attendance Loss Event
+
+Updated FTA (inline preview):
+
+```mermaid
+flowchart TD
+  A[Platform Unavailable During Exam]
+  A --> B{Network Layer Failure}
+  A --> C{Application Layer Failure}
+  A --> D{Data Layer Failure}
+  A --> E{Human/Process Errors}
+
+  B --> B1[Cloud provider outage]
+  B --> B2[DDoS attack on front-end services]
+
+  C --> C1[Exam microservice crash due to unhandled exceptions]
+  C --> C2[Overloaded assignment submission service (peak traffic)]
+
+  D --> D1[Database server crash (single point of failure)]
+  D --> D2[Inconsistent replication between database nodes]
+
+  E --> E1[Incorrect system configuration before exam period]
+  E --> E2[Late patching introducing new bugs]
+```
 
 ## Phase 3 — Testing Strategy, Metrics, Validation (2–3 pages)
 

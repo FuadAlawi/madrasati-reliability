@@ -30,15 +30,23 @@ Rel(api, otp, "OTP/Email")
 
 ```mermaid
 flowchart TD
-A[System Unavailable] --> B{Infrastructure}
-A --> C{Application}
-A --> D{Data}
-B --> B1[Zone outage]
-B --> B2[Network partition]
-C --> C1[Thread pool exhaustion]
-C --> C2[Cache stampede]
-D --> D1[Hot partition]
-D --> D2[Replication lag]
+  A[Platform Unavailable During Exam]
+  A --> B{Network Layer Failure}
+  A --> C{Application Layer Failure}
+  A --> D{Data Layer Failure}
+  A --> E{Human/Process Errors}
+
+  B --> B1[Cloud provider outage]
+  B --> B2[DDoS attack on front-end services]
+
+  C --> C1[Exam microservice crash due to unhandled exceptions]
+  C --> C2[Overloaded assignment submission service (peak traffic)]
+
+  D --> D1[Database server crash (single point of failure)]
+  D --> D2[Inconsistent replication between database nodes]
+
+  E --> E1[Incorrect system configuration before exam period]
+  E --> E2[Late patching introducing new bugs]
 ```
 
 ## Fault Tree: Attendance Loss Event
