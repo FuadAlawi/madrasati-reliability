@@ -1,0 +1,47 @@
+# Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+pom.xml.versionsBackup
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.flattened-pom.xml
+.mvn/timing.properties
+
+# Logs
+*.log
+
+# Java
+*.class
+hs_err_pid*
+replay_pid*
+
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+.factorypath
+
+# VS Code
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Misc
+*.swp
+*.swo
+
+# Node wrapper caches (in case of docs tooling)
+node_modules/
+
+# Coverage/Reports
+surefire-reports/
+failsafe-reports/
+jacoco.exec
+site/
