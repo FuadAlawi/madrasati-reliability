@@ -1,6 +1,10 @@
 # Madrasati Critical System Reliability Strategy (AMIR Framework)
 
-This repository contains a complete reliability strategy for Saudi Arabia's Madrasati education platform, aligned to Vision 2030. It includes:
+[![CI](https://github.com/FuadAlawi/madrasati-reliability/actions/workflows/ci.yml/badge.svg)](https://github.com/FuadAlawi/madrasati-reliability/actions/workflows/ci.yml)
+
+This repository contains a complete reliability strategy for Saudi Arabia's Madrasati education platform, aligned to Vision 2030.
+
+## Features
 
 - AMIR framework report ready for PDF export
 - Java prototype/simulation with fault injection and resilience patterns
@@ -22,7 +26,7 @@ This repository contains a complete reliability strategy for Saudi Arabia's Madr
 - `.github/workflows/ci.yml` — Build and test pipeline
 - `pom.xml` — Maven config
 
-## Quick Start
+## Getting Started
 
 1) Build and test
 
@@ -53,6 +57,55 @@ pandoc REPORT_AMIR.md -o REPORT_AMIR.pdf --from markdown --pdf-engine wkhtmltopd
 ```
 
 Alternatively, open `REPORT_AMIR.md` in VS Code and use a Markdown PDF extension.
+
+## Example Outputs
+
+### Humanization Checklist (example)
+
+Command:
+
+```bash
+java -jar target/madrasati-reliability-1.0.0-jar-with-dependencies.jar humanize \
+  --self-service --a11y --localization --data-privacy --teacher-support --student-safety
+```
+
+Output:
+
+```
+Humanization Checklist
+----------------------
+[X  ] Self-service & Clear Guidance
+[X  ] Accessibility (WCAG 2.2 AA)
+[X  ] Localization (Arabic-first)
+[X  ] Data privacy & consent
+[X  ] Teacher support & escalation
+[X  ] Student online safety
+Result: PASS
+```
+
+### Simulation (example)
+
+Command:
+
+```bash
+java -jar target/madrasati-reliability-1.0.0-jar-with-dependencies.jar simulate \
+  --runs 10000 --latency-ms 150 --failure-rate 0.02
+```
+
+Output:
+
+```
+Runs=10000, Availability=0.9740, P95 latency=208 ms, ErrorRate=0.0260
+```
+
+### Resilience (examples)
+
+- Circuit Breaker (`sa.edu.madrasati.reliability.resilience.CircuitBreaker`):
+  - Opens after a configurable number of failures, then transitions to HALF_OPEN after the cool-off interval.
+- Bulkhead (`sa.edu.madrasati.reliability.resilience.Bulkhead`):
+  - Limits concurrent calls using a semaphore; excess calls return a fallback if the timeout elapses.
+
+For runnable examples, see `src/test/java/sa/edu/madrasati/reliability/ResilienceTest.java`.
 
 ## Java Version
 
